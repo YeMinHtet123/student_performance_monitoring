@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student List</h1>
+    <form method="get" action="/search">
+        <input type="text" name="query" placeholder="Search by ID, name, or rating range">
+        <select name="rating_filter">
+            <option value="above">Above</option>
+            <option value="below">Below</option>
+        </select>
+        <input type="number" name="rating_threshold" placeholder="Rating Threshold" min="0" max="100">
+        <input type="submit" value="Search">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Discipline 1</th>
+                <th>Discipline 2</th>
+                <th>Discipline 3</th>
+                <th>Discipline 4</th>
+                <th>Discipline 5</th>
+                <th>Debts</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td><a href="/student/{{ student.id }}">{{ student.name }}</a></td>
+                    <td>{{ student.ratings.get('Discipline 1', 'N/A') }}</td>
+                    <td>{{ student.ratings.get('Discipline 2', 'N/A') }}</td>
+                    <td>{{ student.ratings.get('Discipline 3', 'N/A') }}</td>
+                    <td>{{ student.ratings.get('Discipline 4', 'N/A') }}</td>
+                    <td>{{ student.ratings.get('Discipline 5', 'N/A') }}</td>
+                    <td>{{ ', '.join(student.debts) }}</td>
+                    <td>
+                        <a href="/edit_student/{{ student.id }}">Edit</a>
+                        <form action="/delete_student/{{ student.id }}" method="post" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/add_student">Add New Student</a>
+</body>
+</html>
