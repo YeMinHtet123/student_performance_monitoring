@@ -144,8 +144,8 @@ def edit_student(student_id):
     return render_template_string('''
     <form method="post">
         Name: <input type="text" name="name" value="{{ name }}"><br>
-        Ratings (JSON format): <textarea name="ratings">{"Discipline 1": 90, "Discipline 2": 85, "Discipline 3": 80, "Discipline 4": 95, "Discipline 5": 88}</textarea><br>
-        Debts (JSON format): <textarea name="debts">{{ debts }}</textarea><br>
+        Ratings: <textarea name="ratings">{"Discipline 1": , "Discipline 2": , "Discipline 3": , "Discipline 4": , "Discipline 5": }</textarea><br>
+        Debts: <textarea name="debts">{{ debts }}</textarea><br>
         <input type="submit">
     </form>
     ''', **student_info)

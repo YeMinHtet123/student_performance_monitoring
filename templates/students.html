@@ -55,7 +55,7 @@
                     <td>{{ student.ratings.get('Discipline 5', 'N/A') }}</td>
                     <td>{{ ', '.join(student.debts) }}</td>
                     <td>
-                        <a href="/edit_student/{{ student.id }}">Edit</a>
+                        <a href="/edit_student/{{ student.id }}"><button type="submit">Edit</button></a>
                         <form action="/delete_student/{{ student.id }}" method="post" style="display:inline;">
                             <button type="submit">Delete</button>
                         </form>
@@ -64,6 +64,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="/add_student">Add New Student</a>
+    <a href="/add_student"><button type="submit">Add new student</button></a>
 </body>
 </html>

@@ -22,8 +22,8 @@ class StudentPerformanceMonitoringTests(unittest.TestCase):
 
     def test_add_student(self):
         new_student = {
-            'id': 38,
-            'name': 'Min Thu Kyaw',
+            'id': 37,
+            'name': 'Aung Zin',
             'ratings': json.dumps({
                 'Discipline 1': 85,
                 'Discipline 2': 90,
@@ -56,7 +56,7 @@ class StudentPerformanceMonitoringTests(unittest.TestCase):
         self.assertIn(b'Student updated successfully!', response.data)
 
     def test_delete_student(self):
-        response = self.app.post('/delete_student/37')
+        response = self.app.post('/delete_student/38')
         print("Delete Student Response Data:", response.data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Student deleted successfully!', response.data)
